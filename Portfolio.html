@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Portfolio</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+  <style>
+    body, h1, h2, h3, h4, h5 { font-family: "Raleway", sans-serif; }
+    .portfolio-container { max-width: 1600px; margin: auto; }
+
+    /* Thumbnail size for grid */
+    .portfolio-row img {
+      width: 7rem;
+      height: 7rem;
+      object-fit: cover;
+      margin-bottom: -6px;
+      opacity: 0.8;
+      cursor: pointer;
+      transition: opacity 0.3s;
+    }
+    .portfolio-row img:hover { opacity: 1; }
+
+    .image-title {
+      font-size: 14px;
+      color: #555;
+      margin-top: 8px;
+      opacity: 0;
+      transition: opacity 0.3s ease; /* Transition effect for text */
+    }
+    
+
+    /* Style for the hover image container */
+    .hover-image-container {
+  margin-top: 20px;
+  display: flex; /* Use flexbox for alignment */
+  align-items: center; /* Center items vertically */
+  gap: 20px; /* Space between image and text */
+}
+
+.hover-image-container img {
+  width: 500px; /* Maintain size */
+  height: auto; /* Keep aspect ratio */
+  border: 2px solid #ccc; /* Border for the image */
+}
+    .hover-image-container img.show {
+      display: block; /* Show when class is added */
+    }
+
+    #hoverTitle {
+  font-size: 20px; /* Adjust font size for title */
+  color: #333; /* Text color for title */
+  opacity: 0; /* Start hidden */
+  transition: opacity 0.3s; /* Fade-in effect */
+}
+
+#hoverDescription {
+  font-size: 16px; /* Set the desired font size for description */
+  color: #333; /* Text color */
+  opacity: 0; /* Start hidden */
+  transition: opacity 0.3s; /* Fade-in effect */
+  text-align: left; /* Align text to the left for clarity */
+}
+
+      /* CSS for modal content and image sizing */
+      #modal01 .w3-modal-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        max-width: 80%; /* Keeps content from taking too much width */
+        max-height: 80vh; /* Keeps content from exceeding the viewport height */
+        margin: auto;
+        padding: 20px;
+        text-align: center;
+        overflow: hidden; /* Prevents overflow if content is large */
+      }
+
+      #modal01 img, #modal01 video {
+        max-width: 100%; /* Ensures the media fits within modal width */
+        max-height: 80vh; /* Ensures the media fits within viewport height */
+        object-fit: contain; /* Keeps image/video proportionate */
+      }
+
+
+  </style>
+</head>
+<body class="w3-light-grey w3-content portfolio-container">
+
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-bar-block w3-white w3-animate-left w3-text-grey w3-collapse w3-top w3-center" style="z-index:3;width:300px;font-weight:bold" id="mySidebar">
+  <br>
+  <h3 class="w3-padding-64 w3-center"><b>Portfolio</b></h3>
+  <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button w3-padding w3-hide-large">CLOSE</a>
+  <a href="Main Page.html" style="font-size: 24px; font-weight: bold; color: black;">Back to Main Page</a>
+</nav>
+
+<!-- Overlay for small screens -->
+<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" id="myOverlay"></div>
+
+<!-- Main content -->
+<div class="w3-main" style="margin-left:300px">
+
+  <!-- Image grid -->
+  <div class="w3-row-padding portfolio-row">
+    <!-- Row 1 -->
+    <div class="w3-col s2">
+      <img src="Images/eyespin.gif" data-full="Images/eyespin.gif" data-index="0" onclick="onClick(this, 0)" onmouseover="hoverImage(this)" onmouseout="clearHover()" alt="Image 1">
+      <p class="image-title">GIF</p>
+    </div>
+    <div class="w3-col s2">
+      <img src="Images/yuriria.jpg" data-full="Images/yuriria.jpg" data-index="1" onclick="onClick(this, 1)" onmouseover="hoverImage(this)" onmouseout="clearHover()" alt="Image 2">
+      <p class="image-title">Glitch</p>
+    </div>
+    <div class="w3-col s2">
+      <img src="Images/vaccine.jpg" data-full="Images/vaccine.jpg" data-index="2" onclick="onClick(this, 2)" onmouseover="hoverImage(this)" onmouseout="clearHover()" alt="Image 3">
+      <p class="image-title">MEME</p>
+    </div>
+    <div class="w3-col s2">
+      <img src="Images/abstract.jpg" data-full="Images/abstract.jpg" data-index="3" onclick="onClick(this, 3)" onmouseover="hoverImage(this)" onmouseout="clearHover()" alt="Image 4">
+      <p class="image-title">Abstract</p>
+    </div>
+    <div class="w3-col s2">
+      <img src="Images/burn.png" data-full="Images/burn.png" data-video="video/burn.mp4" data-index="4" onclick="onClick(this, 4)" onmouseover="hoverImage(this)" onmouseout="clearHover()" alt="Image 5">
+      <p class="image-title">Burning</p>
+    </div>
+  </div>
+  <div class="w3-row-padding portfolio-row">
+    <!-- Row 2 -->
+    <div class="w3-col s2">
+      <img src="Images/synth.png" data-full="Images/synth.png" data-video="video/synth.mp4" data-index="5" onclick="onClick(this, 5)" onmouseover="hoverImage(this)" onmouseout="clearHover()" alt="Image 6">
+      <p class="image-title">Synth</p>
+    </div>
+    <div class="w3-col s2">
+      <img src="Images/max_art.gif" data-full="Images/max_art.gif" data-index="6" onclick="onClick(this, 6)" onmouseover="hoverImage(this)" onmouseout="clearHover()" alt="Image 7">
+      <p class="image-title">Title 7</p>
+    </div>
+    <div class="w3-col s2">
+      <img src="Images/fish.png" data-full="Images/fish.png" data-index="7" onclick="onClick(this, 7)" onmouseover="hoverImage(this)" onmouseout="clearHover()" alt="Image 8">
+      <p class="image-title">Ocean Ambiance</p>
+    </div>
+    <div class="w3-col s2">
+      <img src="Images/brushwork.png" data-full="Images/brushwork.png" data-index="8" onclick="onClick(this, 8)" onmouseover="hoverImage(this)" onmouseout="clearHover()" alt="Image 9">
+      <p class="image-title">Brush</p>
+    </div>
+    <div class="w3-col s2">
+      <img src="Images/midi_image.png" data-full="Images/midi_image.png" data-video="video/midi.mp4" data-index="9" onclick="onClick(this, 9)" onmouseover="hoverImage(this)" onmouseout="clearHover()" alt="Image 10">
+      <p class="image-title">Midi</p>
+    </div>
+  </div>
+  
+  <!-- Hover Image Container -->
+  <div class="hover-image-container">
+    <h4>My Art Pieces:</h4>
+    <img id="hoverImage" src="" alt="Hover Image"> <!-- Initially hidden -->
+    <div id="hoverTitle" class="image-title" style="opacity: 0;"></div> <!-- Title element -->
+    <p id="hoverDescription" style="opacity: 0; margin-top: 10px;"></p> <!-- Paragraph element -->
+  </div>
+
+  <!-- Modal for full size images on click -->
+  <div id="modal01" class="w3-modal w3-black" onclick="this.style.display='none'">
+    <span class="w3-button w3-black w3-large w3-display-topright">×</span>
+    <div class="w3-modal-content w3-animate-zoom w3-center w3-padding-64">
+      <img id="img01" class="w3-image">
+      <p id="caption"></p>
+      <p id="description" class="image-description"></p>
+    </div>
+  </div>
+
+</div>
+
+<script>
+// Sidebar functions
+function w3_open() {
+  document.getElementById("mySidebar").style.display = "block";
+  document.getElementById("myOverlay").style.display = "block";
+}
+
+function w3_close() {
+  document.getElementById("mySidebar").style.display = "none";
+  document.getElementById("myOverlay").style.display = "none";
+}
+
+// Array of descriptions for the images
+const descriptions = [
+  "In this art piece, this is one of the more refined attempts at making an animation. I never really believed that I would have been able to create something like this without much more time and experience in animation. However, I was able to create this eyeball tracking a crystal cube that is spinning. This eventually leads to the poor thing getting dizzy, only for it to repeat itself and thus it gets stuck in a loop.",
+  "In this art piece I was exploring how I can break the code of a jpg and how I achieved this was Audacity of things to help me achieve this. I went into the text files of the jpg and fed it into the image I chose which is a city in Mexico called Yuriria. I have not visited the city in almost a decade which has caused me to lose my memories of to degradation of the city. When I broke the jpg code I chose this effect because it represented the degradation of my memories of the city that to me was once almost picture perfect.",
+  "This piece I remember making long ago as a reflection of the time it was created which was in early 2021. That was during one of the darkest times in America with COVID-19 being in full swing and cases at the time were rising day by day. Normally how I cope with stressful situations is through humor. On top of that, I wanted to show the ridiculousness and obscurity of what people were thinking. I chose this scene from Spongebob as not only is the cartoon a mine full of humorous takes but in the scene, the character Patrick and Man Ray are arguing about something so obvious and yet Patrick refuses to take the vaccine despite the mountain of evidence. ",
+  "In this piece, I aimed to explore the concept of abstraction, a field in which I humbly admit I am still developing my skills. Instead of grounding this work in personal experiences or emotions, I chose to base it entirely on chance. I generated random numbers that dictated not only the shapes I used but also the overall color palette of the piece. This approach allowed me to step outside my comfort zone and embrace unpredictability, letting the process unfold organically. Each shape and color in the composition was born from a moment of chance, reinforcing the idea that beauty can be found in unpredictability. Through this work, I had hoped to convey the excitement and freedom that can emerge when we allow ourselves to let go of control and simply embrace the creative process.",
+  "In this piece, I share my first attempt at creating a video that reflects my feelings about school at that time. When I recorded the video, I was feeling burnt out; I didn’t feel like I was making progress in life, and attending school felt more like a chore every day. My passion for the arts and learning seemed to fade away. This feeling wasn’t easy to overcome, but fortunately, editing videos sparked my interest in something new. This experience taught me how to combat burnout. I discovered that learning new things and experimenting with this new skill set can help alleviate feelings of burnout.",
+  "In this piece, by using Max I was able to build my synth pad of sorts from scratch. Not only was I able to generate music with this but I was also able to create a visualizer that went along with the synth. With each press of the synth button, I was able to generate a response to it with a light show on the right. Each button corresponds to a different color and placement of the light and of course, each button generates a different sound. ",
+  "Continuing with Max I was able to generate something new and slightly animated. Unlike my gif project, this art piece instead uses Max to generate a light-up pattern that highlights the buildings I made. This project is an 8-bit rendition of an Art Deco building that uses a minimal color palette. Art Deco was my favorite movement and 8-bit art is something new to me. By combining these together I get to have an experience of making something new that I have never been able to do before. ",
+  "In this project, I created something entirely using JavaScript, which was a first for me. I borrowed a flocking script from the p5 library and made several adjustments to the code, including changes to the colors and adding a trailing effect. As the colors changed, I recorded the visuals and incorporated a song from Donkey Kong Country, creating a peaceful soundscape perfect for relaxation.",
+  "In this piece, I focused on developing my drawing tool program that features custom brushes tailored to my artistic vision. This particular creation involved using these brushes to generate an abstract 3D landscape, showcasing the evolution of my abstraction skills. As I experimented with different textures and forms, I aimed to capture the essence of a dreamlike environment, where colors and shapes blend seamlessly. This project represents not only my technical prowess in programming but also my growing ability to express complex ideas through digital art. Each brushstroke contributed to a rich tapestry, inviting viewers to interpret the landscape in their own unique way.",
+  "Another Midi art peice that resonates with a new sound."
+];
+
+// Array of hover descriptions for the hover text
+const hoverDescriptions = [
+  "In this art piece, this is one of the more refined attempts at making an animation. I never really believed that I would have been able to create something like this without much more time and experience in animation. However, I was able to create this eyeball tracking a crystal cube that is spinning. This eventually leads to the poor thing getting dizzy, only for it to repeat itself and thus it gets stuck in a loop.",
+  "In this art piece I was exploring how I can break the code of a jpg and how I achieved this was Audacity of things to help me achieve this. I went into the text files of the jpg and fed it into the image I chose which is a city in Mexico called Yuriria. I have not visited the city in almost a decade which has caused me to lose my memories of to degradation of the city. When I broke the jpg code I chose this effect because it represented the degradation of my memories of the city that to me was once almost picture perfect.",
+  "This piece I remember making long ago as a reflection of the time it was created which was in early 2021. That was during one of the darkest times in America with COVID-19 being in full swing and cases at the time were rising day by day. Normally how I cope with stressful situations is through humor. On top of that, I wanted to show the ridiculousness and obscurity of what people were thinking. I chose this scene from Spongebob as not only is the cartoon a mine full of humorous takes but in the scene, the character Patrick and Man Ray are arguing about something so obvious and yet Patrick refuses to take the vaccine despite the mountain of evidence. ",
+  "In this piece, I aimed to explore the concept of abstraction, a field in which I humbly admit I am still developing my skills. Instead of grounding this work in personal experiences or emotions, I chose to base it entirely on chance. I generated random numbers that dictated not only the shapes I used but also the overall color palette of the piece. This approach allowed me to step outside my comfort zone and embrace unpredictability, letting the process unfold organically. Each shape and color in the composition was born from a moment of chance, reinforcing the idea that beauty can be found in unpredictability. Through this work, I had hoped to convey the excitement and freedom that can emerge when we allow ourselves to let go of control and simply embrace the creative process.",
+  "In this piece, I share my first attempt at creating a video that reflects my feelings about school at that time. When I recorded the video, I was feeling burnt out; I didn’t feel like I was making progress in life, and attending school felt more like a chore every day. My passion for the arts and learning seemed to fade away. This feeling wasn’t easy to overcome, but fortunately, editing videos sparked my interest in something new. This experience taught me how to combat burnout. I discovered that learning new things and experimenting with this new skill set can help alleviate feelings of burnout.",
+  "In this piece, by using Max I was able to build my synth pad of sorts from scratch. Not only was I able to generate music with this but I was also able to create a visualizer that went along with the synth. With each press of the synth button, I was able to generate a response to it with a light show on the right. Each button corresponds to a different color and placement of the light and of course, each button generates a different sound. ",
+  "Continuing with Max I was able to generate something new and slightly animated. Unlike my gif project, this art piece instead uses Max to generate a light-up pattern that highlights the buildings I made. This project is an 8-bit rendition of an Art Deco building that uses a minimal color palette. Art Deco was my favorite movement and 8-bit art is something new to me. By combining these together I get to have an experience of making something new that I have never been able to do before. ",
+  "In this project, I created something entirely using JavaScript, which was a first for me. I borrowed a flocking script from the p5 library and made several adjustments to the code, including changes to the colors and adding a trailing effect. As the colors changed, I recorded the visuals and incorporated a song from Donkey Kong Country, creating a peaceful soundscape perfect for relaxation.",
+  "In this piece, I focused on developing my drawing tool program that features custom brushes tailored to my artistic vision. This particular creation involved using these brushes to generate an abstract 3D landscape, showcasing the evolution of my abstraction skills. As I experimented with different textures and forms, I aimed to capture the essence of a dreamlike environment, where colors and shapes blend seamlessly. This project represents not only my technical prowess in programming but also my growing ability to express complex ideas through digital art. Each brushstroke contributed to a rich tapestry, inviting viewers to interpret the landscape in their own unique way..",
+  "Another Midi art peice that resonates with a new sound."
+];
+
+// Function to show the hover image and title
+function hoverImage(element) {
+  const index = element.getAttribute('data-index') || '0'; // Default to 0 if not set
+  const hoverImage = document.getElementById('hoverImage');
+  const hoverTitle = document.getElementById('hoverTitle');
+  const hoverDescription = document.getElementById('hoverDescription');
+
+  hoverImage.src = element.getAttribute('data-full');
+  hoverTitle.textContent = element.nextElementSibling.textContent; // Get title from the sibling p element
+  hoverDescription.textContent = hoverDescriptions[index]; // Get corresponding hover description
+  hoverImage.classList.add('show'); // Show the hover image
+  hoverTitle.style.opacity = 1; // Fade in title
+  hoverDescription.style.opacity = 1; // Fade in description
+}
+
+// Function to clear the hover image
+function clearHover() {
+  const hoverImage = document.getElementById('hoverImage');
+  const hoverTitle = document.getElementById('hoverTitle');
+  const hoverDescription = document.getElementById('hoverDescription');
+
+  hoverImage.classList.remove('show'); // Hide the hover image
+  hoverTitle.style.opacity = 0; // Fade out title
+  hoverDescription.style.opacity = 0; // Fade out description
+}
+
+function onClick(element, index) {
+  const modal = document.getElementById("modal01");
+  const img = document.getElementById("img01");
+  const caption = document.getElementById("caption");
+  const description = document.getElementById("description");
+
+  // Clear any existing video to prevent overlapping or "bleeding" effect
+  const existingVideo = document.getElementById("video01");
+  if (existingVideo) existingVideo.remove();
+
+  const videoSrc = element.getAttribute("data-video"); // Get the video source if present
+
+  if (videoSrc) {
+    // If the image has a video source, create and show the video in the modal
+    img.style.display = "none"; // Hide the image element
+    const videoElement = document.createElement("video");
+    videoElement.src = videoSrc;
+    videoElement.controls = true;
+    videoElement.autoplay = true;
+    videoElement.id = "video01";
+    document.querySelector(".w3-modal-content").insertBefore(videoElement, caption);
+  } else {
+    // Otherwise, show the image as before
+    img.src = element.getAttribute("data-full");
+    img.style.display = "block"; // Show the image element
+  }
+
+  caption.innerHTML = element.nextElementSibling.textContent; // Get title from the sibling p element
+  description.innerHTML = descriptions[index]; // Get corresponding description
+
+  modal.style.display = "block"; // Show the modal
+}
+
+
+</script>
+
+</body>
+</html>
