@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Christian Cintora Zavala</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script> <!-- p5.js library -->
+
+  <style>
+    body, h1, h2, h3, h4, h5, h6 {
+      font-family: "Montserrat", sans-serif;
+    }
+    .w3-sidebar {
+      width: 120px;
+      background: #222;
+    }
+    #main {
+      margin-left: 120px;
+      position: relative;
+    }
+    @media only screen and (max-width: 600px) {
+      #main {
+        margin-left: 0;
+      }
+    }
+    header.w3-container {
+      padding-top: 100px;
+    }
+
+    /* Center the canvas container */
+    .canvas-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      opacity: 0; /* Start hidden */
+      transition: opacity 1s ease-in-out; /* Fade effect */
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%; /* Full width */
+      z-index: -1; /* Lower z-index so it doesn't cover other content */
+      pointer-events: none;
+    }
+    .canvas-container.visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* Ensure Portfolio link stays visible */
+    header.w3-container p a {
+      position: relative;
+      z-index: 2; /* Raise z-index above the canvas */
+      color: white;
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    /* Aligned Text Space Below the Canvas */
+    .text-space {
+      text-align: center;  /* Center the text */
+      margin-top: 650px;    /* Space between canvas and text */
+      font-size: 18px;     /* Adjust font size */
+      color: #FFFFFF;      /* Text color */
+    }
+  </style>
+</head>
+<body class="w3-black">
+
+<!-- Sidebar with buttons -->
+<nav class="w3-sidebar w3-bar-block w3-small w3-hide-small w3-center">
+  <a href="javascript:void(0);" class="w3-bar-item w3-button w3-padding-large w3-black" onclick="runOceanAmbiance()">
+    <p style="font-size: 22px; font-weight: bold;">Ocean Amb</p>
+  </a>
+  <a href="javascript:void(0);" class="w3-bar-item w3-button w3-padding-large w3-black" onclick="runOceanAmbiance()">
+    <p style="font-size: 22px; font-weight: bold;">Ocean Amb</p>
+  </a>
+  <a href="javascript:void(0);" class="w3-bar-item w3-button w3-padding-large w3-black" onclick="runOceanAmbiance()">
+    <p style="font-size: 22px; font-weight: bold;">Ocean Amb</p>
+  </a>
+  <a href="javascript:void(0);" class="w3-bar-item w3-button w3-padding-large w3-black" onclick="runOceanAmbiance()">
+    <p style="font-size: 22px; font-weight: bold;">Ocean Amb</p>
+  </a>
+</nav>
+
+<!-- Main Content -->
+<div class="w3-padding-large" id="main">
+  <header class="w3-container w3-padding-32 w3-center" id="home">
+    <h1 class="w3-jumbo">Christian Cintora Zavala</h1>
+  </header>
+
+  <!-- Canvas Container to Center the Canvas -->
+  <div class="canvas-container" id="canvasContainer">
+    <!-- Canvas will be placed here by p5.js -->
+  </div>
+
+  <!-- Aligned Text Space Below the Canvas -->
+  <div class="text-space" id="textSpace">
+    <p> Artist Statment<p>
+    <p>This is a preview to my projects click and drag on screen to add more fish. <p>
+  </div>
+</div>
+
+<!-- Boid Simulation Script -->
+<script src="boids.js"></script>
+</body>
+</html>
