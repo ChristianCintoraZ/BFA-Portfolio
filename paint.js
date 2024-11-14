@@ -7,7 +7,7 @@ let bgc ;
 let gkcount;
 
 function runPaintbrush() {
-  const canvasContainer = document.getElementById('canvasContainer');
+  const canvasContainer = document.getElementById('canvasContainer2');
   canvasContainer.classList.add('visible');
   setup();
 }
