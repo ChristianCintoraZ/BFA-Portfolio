@@ -8,6 +8,9 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script> <!-- p5.js library -->
+  <script src="boids.js"></script>  <!-- Your boids.js file -->
+  <!-- Remove paint.js script -->
+  <!-- <script src="paint.js"></script> -->
 
   <style>
     body, h1, h2, h3, h4, h5, h6 {
@@ -70,36 +73,49 @@
 </head>
 <body class="w3-black">
 
+<!-- Add a video container for Vimeo -->
+<div class="video-container" id="videoContainer" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 60%; height: 60%; z-index: 10;">
+  <iframe id="vimeoVideo" src="" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" style="width: 100%; height: 100%;" title="Vimeo Video"></iframe>
+</div>
+
+<!-- Add the Vimeo Player API script -->
+<script src="https://player.vimeo.com/api/player.js"></script>
+
+<!-- Add an image container -->
+<div class="image-container" id="imageContainer" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 60%; height: 60%; z-index: 10;">
+  <img id="displayedImage" src="" alt="Displayed Image" style="width: 100%; height: 100%; object-fit: contain;">
+</div>
+
 <!-- Sidebar with buttons -->
 <nav class="w3-sidebar w3-bar-block w3-small w3-hide-small w3-center">
   <a href="javascript:void(0);" class="w3-bar-item w3-button w3-padding-large w3-black" onclick="runOceanAmbiance()">
     <p style="font-size: 22px; font-weight: bold;">Ocean Amb</p>
   </a>
-  <a href="javascript:void(0);" class="w3-bar-item w3-button w3-padding-large w3-black" onclick="runOceanAmbiance()">
-    <p style="font-size: 22px; font-weight: bold;">Brush Work</p>
+  <a href="javascript:void(0);" class="w3-bar-item w3-button w3-padding-large w3-black" onclick="showImage('Images/tile.jpg')">
+    <p style="font-size: 22px; font-weight: bold;">Sketch</p>
   </a>
-  <a href="javascript:void(0);" class="w3-bar-item w3-button w3-padding-large w3-black" onclick="runOceanAmbiance()">
-    <p style="font-size: 22px; font-weight: bold;">GIF</p>
-  </a>
-  <a href="javascript:void(0);" class="w3-bar-item w3-button w3-padding-large w3-black" onclick="runOceanAmbiance()">
-    <p style="font-size: 22px; font-weight: bold;">Abstract</p>
-  </a>
-  <a href="javascript:void(0);" class="w3-bar-item w3-button w3-padding-large w3-black" onclick="runOceanAmbiance()">
+  <a href="javascript:void(0);" class="w3-bar-item w3-button w3-padding-large w3-black" onclick="playVimeoVideo('https://player.vimeo.com/video/1029781386?h=dcea505a64')">
     <p style="font-size: 22px; font-weight: bold;">Burning</p>
   </a>
-  <a href="javascript:void(0);" class="w3-bar-item w3-button w3-padding-large w3-black" onclick="runOceanAmbiance()">
-    <p style="font-size: 22px; font-weight: bold;">MEME</p>
-  </a>
-  <a href="javascript:void(0);" class="w3-bar-item w3-button w3-padding-large w3-black" onclick="runOceanAmbiance()">
+  <a href="javascript:void(0);" class="w3-bar-item w3-button w3-padding-large w3-black" onclick="playVimeoVideo('https://player.vimeo.com/video/1029783793?h=dcea505a64')">
     <p style="font-size: 22px; font-weight: bold;">Synth</p>
   </a>
-  <a href="javascript:void(0);" class="w3-bar-item w3-button w3-padding-large w3-black" onclick="runOceanAmbiance()">
+  <a href="javascript:void(0);" class="w3-bar-item w3-button w3-padding-large w3-black" onclick="showImage('Images/eyespin.gif')">
+    <p style="font-size: 22px; font-weight: bold;">GIF</p>
+  </a>
+  <a href="javascript:void(0);" class="w3-bar-item w3-button w3-padding-large w3-black" onclick="showImage('Images/vaccine.jpg')">
+    <p style="font-size: 22px; font-weight: bold;">MEME</p>
+  </a>
+  <a href="javascript:void(0);" class="w3-bar-item w3-button w3-padding-large w3-black" onclick="showImage('Images/abstract.jpg')">
+    <p style="font-size: 22px; font-weight: bold;">Abstract</p>
+  </a>
+  <a href="javascript:void(0);" class="w3-bar-item w3-button w3-padding-large w3-black" onclick="showImage('Images/max_art.gif')">
     <p style="font-size: 22px; font-weight: bold;">MaxArt</p>
   </a>
-  <a href="javascript:void(0);" class="w3-bar-item w3-button w3-padding-large w3-black" onclick="runOceanAmbiance()">
-    <p style="font-size: 22px; font-weight: bold;">Brush</p>
+  <a href="javascript:void(0);" class="w3-bar-item w3-button w3-padding-large w3-black" onclick="showImage('Images/yuriria.jpg')">
+    <p style="font-size: 22px; font-weight: bold;">Glitch</p>
   </a>
-  <a href="javascript:void(0);" class="w3-bar-item w3-button w3-padding-large w3-black" onclick="runOceanAmbiance()">
+  <a href="javascript:void(0);" class="w3-bar-item w3-button w3-padding-large w3-black" onclick="playVimeoVideo('https://player.vimeo.com/video/1029782209?h=8ce835099f')">
     <p style="font-size: 22px; font-weight: bold;">Midi</p>
   </a>
 </nav>
@@ -121,8 +137,56 @@
   </div>
 </div>
 
-<!-- Boid Simulation Script -->
-<script src="boids.js"></script>
+<!-- Add script to manage sketches -->
+<script>
+let currentSketch = null;
+
+function runOceanAmbiance() {
+  document.getElementById('canvasContainer').classList.add('visible');
+  document.getElementById('textSpace').innerHTML = `
+    <p>Ocean Ambiance</p>
+    <p>Click and drag on screen to add more fish.</p>
+  `;
+  
+  // Hide the video container
+  document.getElementById('videoContainer').style.display = 'none';
+}
+
+// New function to play Vimeo video
+function playVimeoVideo(videoUrl) {
+  const videoContainer = document.getElementById('videoContainer');
+  const vimeoVideo = videoContainer.querySelector('iframe');
+  
+  vimeoVideo.src = videoUrl + '?autoplay=1'; // Set the video URL with autoplay
+  
+  // Hide the Ocean Ambiance container
+  document.getElementById('canvasContainer').classList.remove('visible');
+  
+  // Hide the image container
+  document.getElementById('imageContainer').style.display = 'none';
+  
+  videoContainer.style.display = 'block'; // Show the video container
+}
+
+function showImage(imageSrc) {
+  // Hide the Ocean Ambiance container
+  document.getElementById('canvasContainer').classList.remove('visible');
+  
+  // Hide the video container
+  document.getElementById('videoContainer').style.display = 'none';
+  
+  // Hide the image container if it's already visible
+  const imageContainer = document.getElementById('imageContainer');
+  const displayedImage = document.getElementById('displayedImage');
+  
+  // Set the image source
+  displayedImage.src = imageSrc; // Set the image source dynamically
+  imageContainer.style.display = 'block'; // Show the image container
+}
+
+//function run
+
+</script>
 </body>
 </html>
 
